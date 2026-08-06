@@ -641,10 +641,6 @@ with tab1:
         else:
             st.warning("Enter a password first.")
 
-st.image(
-    "https://static.vecteezy.com/system/resources/thumbnails/007/994/650/small/cybersecurity-and-privacy-concepts-to-protect-data-lock-icon-and-internet-network-security-technology-businessmen-protecting-personal-data-on-laptops-and-virtual-interfaces-photo.jpg",
-    width=500
-)
 
 # POLICY GENERATOR
 
@@ -669,10 +665,6 @@ with tab2:
             st.markdown(policy)
             st.download_button("📥 Download Policy", policy, file_name="Password_Policy.txt")
 
-st.image(
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3zAvATIcpiuGlfE7DgkyIpym9abfeb2HO5zv8WewGZEs9TFfLSdgpqus&s=10",
-    width=500
-)
 
 # PHISHING DETECTOR
 
@@ -690,11 +682,6 @@ with tab3:
             st.markdown('<div class="panel-title">Scan Result</div>', unsafe_allow_html=True)
             alert(result, kind=kind, icon="🔍")
 
-st.image(
-    "https://media.licdn.com/dms/image/v2/D5612AQHAMDWC4URvnw/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1703585611284?e=2147483647&v=beta&t=NnLyiD-qUfK9SFAwSK-briqpyV4ODlk8QLWqUrFMypY",
-    width=500
-)
-
 # CYBER EXPERT
 
 with tab4:
@@ -709,11 +696,6 @@ with tab4:
         with st.container(border=True):
             st.markdown('<div class="panel-title">Expert Answer</div>', unsafe_allow_html=True)
             st.write(answer)
-
-st.image(
-    "https://img.magnific.com/free-photo/skilled-it-expert-compromising-cyber-security-through-malware-viruses_482257-126439.jpg?semt=ais_hybrid&w=740&q=80",
-    width=500
-)
 
 # FIR GENERATOR
 
@@ -733,10 +715,6 @@ with tab5:
             st.markdown(f'<div class="doc-card">{fir}</div>', unsafe_allow_html=True)
             st.download_button("📥 Download FIR", fir, file_name="FIR_Report.txt")
 
-st.image(
-    "https://i0.wp.com/www.navuttarakhand.com/wp-content/uploads/2016/09/Online-FIR.jpg?fit=800%2C480&ssl=1",
-    width=500
-)
 
 # FOOTER
 
