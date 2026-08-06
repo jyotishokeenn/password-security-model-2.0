@@ -4,9 +4,7 @@ import math
 import google.generativeai as genai
 import plotly.graph_objects as go
 
-# ====================================================
 # PAGE CONFIG
-# ====================================================
 
 st.set_page_config(
     page_title="SecureAccess // Password Intelligence Terminal",
@@ -14,166 +12,264 @@ st.set_page_config(
     layout="wide"
 )
 
-# ====================================================
 # THEME — "Security Operations Console"
-# ====================================================
 
 st.markdown("""
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
 
 :root{
-  --bg-primary:#0A0E16;
-  --bg-panel:#121826;
-  --bg-panel-alt:#182033;
-  --border-subtle:#232D40;
-  --accent-cyan:#2DE1C2;
-  --accent-amber:#FFB84D;
-  --accent-red:#FF5470;
-  --text-primary:#E7EDF3;
-  --text-secondary:#8FA3B8;
+  --bg-primary:#F5F7FA;
+  --bg-panel:#FFFFFF;
+  --bg-panel-alt:#F8FAFC;
+  --border-subtle:#D1D5DB;
+
+  --accent-cyan:#2563EB;
+  --accent-amber:#F59E0B;
+  --accent-red:#EF4444;
+
+  --text-primary:#111827;
+  --text-secondary:#4B5563;
 }
 
-html, body, [class*="css"]{ font-family:'Inter', sans-serif; }
+html, body, [class*="css"]{
+    font-family:'Inter', sans-serif;
+    color:var(--text-primary);
+}
 
 .stApp{
-  background: radial-gradient(circle at 15% 0%, #101A2B 0%, #0A0E16 45%, #080C12 100%);
-  color: var(--text-primary);
+    background:var(--bg-primary);
+    color:var(--text-primary);
 }
 
-.block-container{ padding-top:1.5rem; padding-bottom:2rem; max-width:1100px; }
+.block-container{
+    padding-top:1.5rem;
+    padding-bottom:2rem;
+    max-width:1100px;
+}
 
-#MainMenu, footer, header{ visibility:hidden; }
+#MainMenu, footer, header{
+    visibility:hidden;
+}
 
-/* ---- status bar ---- */
+/* Status Bar */
+
 .status-bar{
-  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.4rem;
-  font-family:'JetBrains Mono', monospace;
-  font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase;
-  color:var(--text-secondary);
-  border:1px solid var(--border-subtle);
-  background:var(--bg-panel);
-  border-radius:8px; padding:0.55rem 1rem; margin-bottom:1.4rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:0.4rem;
+
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+
+    color:var(--text-secondary);
+
+    border:1px solid var(--border-subtle);
+    background:white;
+
+    border-radius:8px;
+    padding:0.55rem 1rem;
+    margin-bottom:1.4rem;
 }
+
 .status-dot{
-  display:inline-block; width:7px; height:7px; border-radius:50%;
-  background:var(--accent-cyan); margin-right:6px; box-shadow:0 0 8px var(--accent-cyan);
+    display:inline-block;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--accent-cyan);
+    margin-right:6px;
 }
 
-/* ---- hero ---- */
+/* Hero Section */
+
 .hero{
-  border:1px solid var(--border-subtle);
-  background: linear-gradient(135deg, var(--bg-panel) 0%, var(--bg-panel-alt) 100%);
-  border-radius:14px; padding:2.2rem 2.4rem; margin-bottom:1.6rem;
-  position:relative; overflow:hidden;
+    border:1px solid var(--border-subtle);
+    background:white;
+    border-radius:14px;
+    padding:2.2rem 2.4rem;
+    margin-bottom:1.6rem;
 }
-.hero::before{
-  content:""; position:absolute; top:-40%; right:-8%;
-  width:280px; height:280px;
-  background: radial-gradient(circle, rgba(45,225,194,0.16) 0%, transparent 70%);
-}
+
 .hero-eyebrow{
-  font-family:'JetBrains Mono', monospace; color:var(--accent-cyan);
-  font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:0.7rem;
+    font-family:'JetBrains Mono', monospace;
+    color:var(--accent-cyan);
+    font-size:0.75rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
 }
+
 .hero-title{
-  font-family:'Space Grotesk', sans-serif; font-size:2.5rem; font-weight:700;
-  line-height:1.12; margin:0 0 0.7rem 0; color:var(--text-primary);
+    font-family:'Space Grotesk', sans-serif;
+    font-size:2.5rem;
+    font-weight:700;
+    color:var(--text-primary);
 }
-.hero-title span{ color:var(--accent-cyan); }
-.hero-sub{ color:var(--text-secondary); font-size:0.98rem; max-width:640px; line-height:1.5; }
 
-/* ---- panel title used inside containers ---- */
+.hero-title span{
+    color:var(--accent-cyan);
+}
+
+.hero-sub{
+    color:var(--text-secondary);
+    font-size:0.98rem;
+    line-height:1.5;
+}
+
+/* Panel Title */
+
 .panel-title{
-  font-family:'JetBrains Mono', monospace; font-size:0.78rem; letter-spacing:0.1em;
-  text-transform:uppercase; color:var(--accent-cyan); margin-bottom:0.9rem;
-  border-bottom:1px solid var(--border-subtle); padding-bottom:0.6rem;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--accent-cyan);
+
+    margin-bottom:0.9rem;
+    border-bottom:1px solid var(--border-subtle);
+    padding-bottom:0.6rem;
 }
 
-/* ---- metric chips ---- */
+/* Metric Cards */
+
 .metric-chip{
-  border:1px solid var(--border-subtle); background:var(--bg-panel-alt);
-  border-radius:10px; padding:0.9rem 1rem; text-align:center; height:100%;
+    border:1px solid var(--border-subtle);
+    background:white;
+    border-radius:10px;
+    padding:0.9rem 1rem;
+    text-align:center;
 }
-.metric-chip .val{ font-family:'JetBrains Mono',monospace; font-size:1.5rem; font-weight:700; color:var(--text-primary); }
-.metric-chip .lbl{ font-size:0.68rem; letter-spacing:0.09em; text-transform:uppercase; color:var(--text-secondary); margin-top:0.25rem; }
 
-/* ---- alert / recommendation cards ---- */
+.metric-chip .val{
+    font-family:'JetBrains Mono', monospace;
+    font-size:1.5rem;
+    font-weight:700;
+    color:var(--text-primary);
+}
+
+.metric-chip .lbl{
+    font-size:0.68rem;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--text-secondary);
+}
+
+/* Alerts */
+
 .alert-card{
-  display:flex; align-items:flex-start; gap:0.6rem;
-  border-radius:8px; padding:0.65rem 0.9rem; margin-bottom:0.5rem;
-  font-size:0.88rem; border:1px solid transparent; font-family:'Inter',sans-serif;
+    border-radius:8px;
+    padding:0.7rem;
+    margin-bottom:0.5rem;
 }
-.alert-risk{ background:rgba(255,84,112,0.08); border-color:rgba(255,84,112,0.3); color:#FFB3C0; }
-.alert-warn{ background:rgba(255,184,77,0.08); border-color:rgba(255,184,77,0.3); color:#FFD9A0; }
-.alert-ok{ background:rgba(45,225,194,0.08); border-color:rgba(45,225,194,0.3); color:#9BF0E1; }
-.alert-icon{ font-family:'JetBrains Mono',monospace; font-weight:700; }
 
-/* ---- document-style card (FIR) ---- */
+.alert-risk{
+    background:#FEE2E2;
+    color:#991B1B;
+}
+
+.alert-warn{
+    background:#FEF3C7;
+    color:#92400E;
+}
+
+.alert-ok{
+    background:#DCFCE7;
+    color:#166534;
+}
+
+/* FIR Card */
+
 .doc-card{
-  border:1px dashed var(--border-subtle); background:var(--bg-panel-alt);
-  border-radius:10px; padding:1.4rem 1.6rem; font-family:'JetBrains Mono', monospace;
-  font-size:0.85rem; line-height:1.7; color:var(--text-primary); white-space:pre-wrap;
+    border:1px solid var(--border-subtle);
+    background:white;
+    border-radius:10px;
+    padding:1.4rem;
+    font-family:'JetBrains Mono', monospace;
+    color:var(--text-primary);
+    white-space:pre-wrap;
 }
 
-/* ---- tabs ---- */
-.stTabs [data-baseweb="tab-list"]{ gap:4px; border-bottom:1px solid var(--border-subtle); }
+/* Tabs */
+
 .stTabs [data-baseweb="tab"]{
-  font-family:'JetBrains Mono', monospace; font-size:0.8rem; color:var(--text-secondary);
-  background:transparent; border-radius:8px 8px 0 0; padding:0.6rem 1rem;
+    color:var(--text-primary);
+    font-weight:600;
 }
+
 .stTabs [aria-selected="true"]{
-  color:var(--accent-cyan) !important; border-bottom:2px solid var(--accent-cyan) !important;
+    color:var(--accent-cyan) !important;
+    border-bottom:2px solid var(--accent-cyan) !important;
 }
 
-/* ---- containers acting as panels ---- */
+/* Containers */
+
 div[data-testid="stVerticalBlockBorderWrapper"]{
-  border-color:var(--border-subtle) !important;
-  background:var(--bg-panel) !important;
-  border-radius:12px !important;
+    background:white !important;
+    border:1px solid var(--border-subtle) !important;
+    border-radius:12px !important;
 }
 
-/* ---- inputs ---- */
-.stTextInput input, .stTextArea textarea, .stNumberInput input,
+/* Inputs */
+
+.stTextInput input,
+.stTextArea textarea,
+.stNumberInput input,
 div[data-baseweb="select"] > div{
-  background:var(--bg-panel-alt) !important;
-  border:1px solid var(--border-subtle) !important;
-  color:var(--text-primary) !important;
-  border-radius:8px !important;
+    background:white !important;
+    color:black !important;
+    border:1px solid #CBD5E1 !important;
+    border-radius:8px !important;
 }
 
-/* ---- buttons ---- */
+/* Buttons */
+
 .stButton > button{
-  font-family:'JetBrains Mono', monospace;
-  background:linear-gradient(135deg, var(--accent-cyan), #21B39A);
-  color:#04140F; border:none; border-radius:8px;
-  font-weight:600; letter-spacing:0.03em; padding:0.5rem 1.3rem;
+    background:#2563EB;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-weight:600;
 }
-.stButton > button:hover{ filter:brightness(1.1); }
+
+.stButton > button:hover{
+    background:#1D4ED8;
+    color:white;
+}
+
+/* Download Button */
 
 .stDownloadButton > button{
-  font-family:'JetBrains Mono', monospace;
-  background:var(--bg-panel-alt); border:1px solid var(--accent-cyan) !important;
-  color:var(--accent-cyan) !important; border-radius:8px;
+    background:white;
+    color:#2563EB;
+    border:1px solid #2563EB;
 }
 
-/* ---- progress bar ---- */
+/* Progress */
+
 div[data-testid="stProgress"] > div > div{
-  background:linear-gradient(90deg, var(--accent-red), var(--accent-amber), var(--accent-cyan)) !important;
+    background:#2563EB !important;
 }
 
-/* ---- footer ---- */
+/* Footer */
+
 .app-footer{
-  text-align:center; font-family:'JetBrains Mono',monospace; font-size:0.7rem;
-  color:var(--text-secondary); letter-spacing:0.08em; margin-top:2rem;
-  padding-top:1rem; border-top:1px solid var(--border-subtle);
+    text-align:center;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    color:var(--text-secondary);
+    margin-top:2rem;
 }
+
 </style>
 """, unsafe_allow_html=True)
 
-# ====================================================
+
 # LOGIC — unchanged from the working version
-# ====================================================
 
 def password_strength(password):
     score = 0
@@ -380,9 +476,7 @@ Kindly register this complaint and assist in locating the item.
 Signature:
 {name}"""
 
-# ====================================================
 # UI HELPERS
-# ====================================================
 
 def alert(text, kind="risk", icon=None):
     icons = {"risk": "✕", "warn": "!", "ok": "✓"}
@@ -436,9 +530,7 @@ def render_gauge(score):
     )
     return fig
 
-# ====================================================
 # SIDEBAR
-# ====================================================
 
 with st.sidebar:
     st.markdown(
@@ -463,9 +555,7 @@ with st.sidebar:
     st.divider()
     st.caption("Gemini API keys are used only for this session and are never stored or logged.")
 
-# ====================================================
 # STATUS BAR + HERO
-# ====================================================
 
 st.markdown(
     '<div class="status-bar">'
@@ -487,9 +577,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# ====================================================
 # TABS
-# ====================================================
 
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "🔑  Password Analysis",
@@ -499,9 +587,7 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "📄  FIR Generator"
 ])
 
-# ====================================================
 # PASSWORD ANALYSIS
-# ====================================================
 
 with tab1:
     with st.container(border=True):
@@ -555,9 +641,7 @@ with tab1:
         else:
             st.warning("Enter a password first.")
 
-# ====================================================
 # POLICY GENERATOR
-# ====================================================
 
 with tab2:
     with st.container(border=True):
@@ -580,9 +664,7 @@ with tab2:
             st.markdown(policy)
             st.download_button("📥 Download Policy", policy, file_name="Password_Policy.txt")
 
-# ====================================================
 # PHISHING DETECTOR
-# ====================================================
 
 with tab3:
     with st.container(border=True):
@@ -598,9 +680,7 @@ with tab3:
             st.markdown('<div class="panel-title">Scan Result</div>', unsafe_allow_html=True)
             alert(result, kind=kind, icon="🔍")
 
-# ====================================================
 # CYBER EXPERT
-# ====================================================
 
 with tab4:
     with st.container(border=True):
@@ -615,9 +695,7 @@ with tab4:
             st.markdown('<div class="panel-title">Expert Answer</div>', unsafe_allow_html=True)
             st.write(answer)
 
-# ====================================================
 # FIR GENERATOR
-# ====================================================
 
 with tab5:
     with st.container(border=True):
@@ -635,9 +713,7 @@ with tab5:
             st.markdown(f'<div class="doc-card">{fir}</div>', unsafe_allow_html=True)
             st.download_button("📥 Download FIR", fir, file_name="FIR_Report.txt")
 
-# ====================================================
 # FOOTER
-# ====================================================
 
 st.markdown(
     '<div class="app-footer">SECUREACCESS TERMINAL · POWERED BY GEMINI AI · '
