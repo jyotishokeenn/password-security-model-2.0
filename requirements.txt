@@ -4,3 +4,4 @@ pandas
 tabulate
 fpdf
 email-validator
+plotly
