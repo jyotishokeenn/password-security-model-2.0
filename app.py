@@ -198,14 +198,27 @@ html, body, [class*="css"]{
 
 /* FIR CARD */
 
-.doc-card{
-    border:1px solid #D1D5DB;
+.fir-document{
     background:white;
-    border-radius:12px;
-    padding:1.4rem;
+    border:1px solid #CBD5E1;
+    border-radius:14px;
+    padding:25px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.05);
     font-family:'JetBrains Mono', monospace;
     color:#111827;
+    line-height:1.8;
+}
+
+.fir-document pre{
     white-space:pre-wrap;
+    font-size:14px;
+    color:#111827;
+}
+
+.fir-document hr{
+    border:none;
+    border-top:1px solid #CBD5E1;
+    margin:15px 0;
 }
 
 /* TABS */
@@ -753,21 +766,124 @@ with tab4:
 
 # FIR GENERATOR
 
+from datetime import datetime
+
 with tab5:
+
     with st.container(border=True):
-        st.markdown('<div class="panel-title">Report Details</div>', unsafe_allow_html=True)
-        c1, c2, c3 = st.columns(3)
-        name = c1.text_input("Your Name")
-        item = c2.text_input("Lost Item")
-        place = c3.text_input("Place of Loss")
-        make = st.button("Generate FIR")
+
+        st.markdown(
+            '<div class="panel-title">Lost & Found FIR Generator</div>',
+            unsafe_allow_html=True
+        )
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            name = st.text_input("👤 Complainant Name")
+            mobile = st.text_input("📱 Mobile Number")
+            item = st.text_input("🎒 Lost Item")
+            value = st.text_input("💰 Estimated Value")
+
+        with col2:
+            place = st.text_input("📍 Place of Loss")
+            date_lost = st.date_input("📅 Date of Incident")
+            time_lost = st.time_input("⏰ Approx Time")
+            city = st.text_input("🏙️ City")
+
+        description = st.text_area(
+            "📝 Additional Details",
+            placeholder="Brand, color, identification marks, circumstances of loss etc."
+        )
+
+        st.markdown("<br>", unsafe_allow_html=True)
+
+        make = st.button(
+            "🚔 Generate Professional FIR Report",
+            use_container_width=True
+        )
 
     if make:
-        fir = generate_fir(name, item, place)
+
+        report_id = f"FIR-{datetime.now().strftime('%Y%m%d%H%M%S')}"
+
+        fir = f"""
+FIRST INFORMATION REPORT (FIR)
+
+Report ID : {report_id}
+
+Date Generated : {datetime.now().strftime("%d-%m-%Y %H:%M:%S")}
+
+------------------------------------------------------------
+
+COMPLAINANT DETAILS
+
+Name           : {name}
+Mobile Number  : {mobile}
+City           : {city}
+
+------------------------------------------------------------
+
+INCIDENT DETAILS
+
+Lost Item      : {item}
+Estimated Value: {value}
+Place of Loss  : {place}
+Date of Loss   : {date_lost}
+Time of Loss   : {time_lost}
+
+------------------------------------------------------------
+
+DESCRIPTION
+
+{description}
+
+------------------------------------------------------------
+
+DECLARATION
+
+I hereby declare that the information provided above is true
+to the best of my knowledge and belief. I request the concerned
+authorities to kindly register this report and take necessary
+action regarding the lost property.
+
+Signature:
+{name}
+
+------------------------------------------------------------
+
+SYSTEM GENERATED REPORT
+Cyber Crime & Public Safety Assistant
+"""
+
         with st.container(border=True):
-            st.markdown('<div class="panel-title">Generated Report</div>', unsafe_allow_html=True)
-            st.markdown(f'<div class="doc-card">{fir}</div>', unsafe_allow_html=True)
-            st.download_button("📥 Download FIR", fir, file_name="FIR_Report.txt")
+
+            st.markdown(
+                '<div class="panel-title">Generated FIR Report</div>',
+                unsafe_allow_html=True
+            )
+
+            st.success(f"✅ Report Generated Successfully | ID: {report_id}")
+
+            st.markdown(
+                f"""
+                <div class="fir-document">
+                <h2 style="text-align:center;color:#1D4ED8;">
+                FIRST INFORMATION REPORT
+                </h2>
+                <hr>
+                <pre>{fir}</pre>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+            st.download_button(
+                "📥 Download FIR Report",
+                fir,
+                file_name=f"{report_id}.txt",
+                use_container_width=True
+            )
 
 
 # FOOTER
