@@ -217,16 +217,29 @@ def detect_phishing(email_text):
 
 def cyber_chat(question, api_key):
 
-    try:
+  def generate_password_policy(org_type, employees, security_level, api_key):
 
-       genai.configure(api_key=api_key)
+    try:
+        genai.configure(api_key=api_key)
 
         model = genai.GenerativeModel(
             "gemini-3.5-flash-lite"
         )
-        prompt = f"""
-You are a Cyber Security Expert.
 
+        prompt = f"""
+        Create a professional password security policy.
+
+        Organization Type: {org_type}
+        Employees: {employees}
+        Security Level: {security_level}
+        """
+
+        response = model.generate_content(prompt)
+        return response.text
+
+    except Exception as e:
+        return f"Error: {e}"
+     
 Answer this question:
 
 {question}
