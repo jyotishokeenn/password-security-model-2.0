@@ -632,12 +632,6 @@ with col1:
         <div class="hero-title">
             Password Security Advisor
         </div>
-
-        <div class="hero-sub">
-            Analyze password strength, generate organizational policies,
-            detect phishing attempts, consult an AI cyber expert,
-            and file lost-item reports — all from one console.
-        </div>
     </div>
     """, unsafe_allow_html=True)
 
