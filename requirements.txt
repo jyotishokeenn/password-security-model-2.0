@@ -1,3 +1,6 @@
 streamlit
 google-generativeai
-plotly.graph_objects
+pandas
+tabulate
+fpdf
+email-validator
