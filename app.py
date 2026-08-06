@@ -243,8 +243,6 @@ def cyber_chat(question, api_key):
 Answer this question:
 
 {question}
-"""
-
         response = model.generate_content(prompt)
 
         return response.text
@@ -271,7 +269,6 @@ Kindly register this complaint and assist in locating the item.
 
 Signature:
 {name}
-"""
 
 # ---------------- TABS ----------------
 
