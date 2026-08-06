@@ -530,37 +530,59 @@ def metric_chip(col, value, label):
 
 def gauge_color(score):
     if score < 40:
-        return "#FF5470"
+        return "#DC2626"
     elif score < 70:
-        return "#FFB84D"
-    return "#2DE1C2"
+        return "#D97706"
+    return "#2563EB"
 
 
 def render_gauge(score):
     fig = go.Figure(go.Indicator(
         mode="gauge+number",
         value=score,
-        number={"suffix": " /100", "font": {"size": 34, "color": "#E7EDF3", "family": "JetBrains Mono"}},
+
+        number={
+            "suffix": "/100",
+            "font": {
+                "size": 42,
+                "color": "#111827"
+            }
+        },
+
         gauge={
-            "axis": {"range": [0, 100], "tickcolor": "#3A4A5A", "tickfont": {"color": "#8FA3B8", "size": 10}},
-            "bar": {"color": gauge_color(score), "thickness": 0.28},
-            "bgcolor": "rgba(0,0,0,0)",
-            "borderwidth": 0,
+            "axis": {
+                "range": [0, 100],
+                "tickcolor": "#374151",
+                "tickfont": {
+                    "color": "#374151",
+                    "size": 14
+                }
+            },
+
+            "bar": {
+                "color": gauge_color(score),
+                "thickness": 0.35
+            },
+
+            "bgcolor": "white",
+
             "steps": [
-                {"range": [0, 40], "color": "rgba(255,84,112,0.12)"},
-                {"range": [40, 70], "color": "rgba(255,184,77,0.12)"},
-                {"range": [70, 100], "color": "rgba(45,225,194,0.12)"},
-            ],
-            "threshold": {"line": {"color": "#E7EDF3", "width": 2}, "thickness": 0.8, "value": score},
+                {"range": [0, 40], "color": "#FEE2E2"},
+                {"range": [40, 70], "color": "#FEF3C7"},
+                {"range": [70, 100], "color": "#DBEAFE"}
+            ]
         }
     ))
+
     fig.update_layout(
-        height=230,
-        margin=dict(l=20, r=20, t=20, b=10),
+        height=300,
+        margin=dict(l=20, r=20, t=20, b=20),
         paper_bgcolor="rgba(0,0,0,0)",
-        font={"color": "#E7EDF3", "family": "Inter"}
+        plot_bgcolor="rgba(0,0,0,0)"
     )
+
     return fig
+
 
 # SIDEBAR
 
