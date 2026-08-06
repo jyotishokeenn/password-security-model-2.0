@@ -238,16 +238,14 @@ Question:
     except Exception as e:
         return f"Error: {e}"
 
-     
-#Answer this question:
+  prompt = f"..."
 
-{question}
     response = model.generate_content(prompt)
 
-        return response.text
+    return response.text
 
-    except Exception as e:
-        return f"Error: {e}"
+except Exception as e:
+    return f"Error: {e}"
 
 # ---------------- FIR ----------------
 
