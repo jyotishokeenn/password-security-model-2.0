@@ -93,38 +93,27 @@ html, body, [class*="css"]{
 /* HERO */
 
 .hero{
-    border:1px solid var(--border-subtle);
     background:white;
+    border:1px solid #D1D5DB;
     border-radius:16px;
-    padding:2.2rem 2.4rem;
-    margin-bottom:1.6rem;
-
+    padding:30px;
+    margin-bottom:20px;
     box-shadow:0 4px 12px rgba(15,23,42,0.05);
 }
 
-.hero-eyebrow{
-    font-family:'JetBrains Mono', monospace;
-    color:#2563EB;
-    font-size:0.75rem;
-    letter-spacing:0.18em;
-    text-transform:uppercase;
-}
-
 .hero-title{
-    font-family:'Space Grotesk', sans-serif;
-    font-size:2.5rem;
-    font-weight:700;
+    font-size:52px;
+    font-weight:800;
     color:#111827;
-}
-
-.hero-title span{
-    color:#2563EB;
+    line-height:1.1;
+    margin-bottom:15px;
 }
 
 .hero-sub{
-    color:#374151;
-    font-size:1rem;
-    line-height:1.6;
+    font-size:20px;
+    color:#4B5563;
+    line-height:1.7;
+    max-width:800px;
 }
 
 /* PANEL TITLE */
@@ -633,15 +622,30 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown(
-    '<div class="hero">'
-    '<div class="hero-eyebrow">Cybersecurity Toolkit · Gemini AI</div>'
-    '<div class="hero-title">Password <span>Intelligence</span> Terminal</div>'
-    '<div class="hero-sub">Analyze password strength, generate organizational policies, '
-    'detect phishing attempts, consult an AI cyber expert, and file lost-item reports — '
-    'all from one console.</div>'
-    '</div>',
-    unsafe_allow_html=True
+# HERO SECTION
+
+col1, col2 = st.columns([2, 1])
+
+with col1:
+    st.markdown("""
+    <div class="hero">
+        <div class="hero-title">
+            Password Security Advisor
+        </div>
+
+        <div class="hero-sub">
+            Analyze password strength, generate organizational policies,
+            detect phishing attempts, consult an AI cyber expert,
+            and file lost-item reports — all from one console.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col2:
+    st.image(
+        "https://humanfocus.co.uk/wp-content/uploads/password-security-800x800.jpg",
+        use_container_width=True
+    )
 )
 
 # TABS
