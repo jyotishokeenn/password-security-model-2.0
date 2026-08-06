@@ -217,28 +217,27 @@ def detect_phishing(email_text):
 
 def cyber_chat(question, api_key):
 
-  def generate_password_policy(org_type, employees, security_level, api_key):
-
     try:
         genai.configure(api_key=api_key)
 
-        model = genai.GenerativeModel(
-            "gemini-3.5-flash-lite"
-        )
+        model = genai.GenerativeModel("gemini-2.5-flash")
 
         prompt = f"""
-        Create a professional password security policy.
+You are a Cyber Security Expert.
 
-        Organization Type: {org_type}
-        Employees: {employees}
-        Security Level: {security_level}
-        """
+Answer the following cybersecurity question in a clear and professional manner.
+
+Question:
+{question}
+"""
 
         response = model.generate_content(prompt)
+
         return response.text
 
     except Exception as e:
         return f"Error: {e}"
+
      
 #Answer this question:
 
@@ -268,7 +267,7 @@ I hereby report that the above-mentioned item has been lost.
 Kindly register this complaint and assist in locating the item.
 
 Signature:
-{name}
+{name}"""
 
 # ---------------- TABS ----------------
 
