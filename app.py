@@ -17,20 +17,22 @@ st.set_page_config(
 st.markdown("""
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
-
 :root{
-  --bg-primary:#F5F7FA;
+  --bg-primary:#EEF2F7;
   --bg-panel:#FFFFFF;
   --bg-panel-alt:#F8FAFC;
-  --border-subtle:#D1D5DB;
+
+  --border-subtle:#CBD5E1;
 
   --accent-cyan:#2563EB;
-  --accent-amber:#F59E0B;
-  --accent-red:#EF4444;
+  --accent-cyan-dark:#1D4ED8;
+
+  --accent-amber:#D97706;
+  --accent-red:#DC2626;
 
   --text-primary:#111827;
-  --text-secondary:#4B5563;
+  --text-secondary:#374151;
+  --text-muted:#6B7280;
 }
 
 html, body, [class*="css"]{
@@ -53,7 +55,7 @@ html, body, [class*="css"]{
     visibility:hidden;
 }
 
-/* Status Bar */
+/* STATUS BAR */
 
 .status-bar{
     display:flex;
@@ -72,33 +74,37 @@ html, body, [class*="css"]{
     border:1px solid var(--border-subtle);
     background:white;
 
-    border-radius:8px;
-    padding:0.55rem 1rem;
+    border-radius:10px;
+    padding:0.7rem 1rem;
     margin-bottom:1.4rem;
+
+    box-shadow:0 2px 8px rgba(0,0,0,0.04);
 }
 
 .status-dot{
     display:inline-block;
-    width:7px;
-    height:7px;
+    width:8px;
+    height:8px;
     border-radius:50%;
-    background:var(--accent-cyan);
+    background:#2563EB;
     margin-right:6px;
 }
 
-/* Hero Section */
+/* HERO */
 
 .hero{
     border:1px solid var(--border-subtle);
     background:white;
-    border-radius:14px;
+    border-radius:16px;
     padding:2.2rem 2.4rem;
     margin-bottom:1.6rem;
+
+    box-shadow:0 4px 12px rgba(15,23,42,0.05);
 }
 
 .hero-eyebrow{
     font-family:'JetBrains Mono', monospace;
-    color:var(--accent-cyan);
+    color:#2563EB;
     font-size:0.75rem;
     letter-spacing:0.18em;
     text-transform:uppercase;
@@ -108,166 +114,190 @@ html, body, [class*="css"]{
     font-family:'Space Grotesk', sans-serif;
     font-size:2.5rem;
     font-weight:700;
-    color:var(--text-primary);
+    color:#111827;
 }
 
 .hero-title span{
-    color:var(--accent-cyan);
+    color:#2563EB;
 }
 
 .hero-sub{
-    color:var(--text-secondary);
-    font-size:0.98rem;
-    line-height:1.5;
+    color:#374151;
+    font-size:1rem;
+    line-height:1.6;
 }
 
-/* Panel Title */
+/* PANEL TITLE */
 
 .panel-title{
     font-family:'JetBrains Mono', monospace;
     font-size:0.78rem;
     letter-spacing:0.1em;
     text-transform:uppercase;
-    color:var(--accent-cyan);
+
+    color:#1D4ED8;
 
     margin-bottom:0.9rem;
-    border-bottom:1px solid var(--border-subtle);
+    border-bottom:1px solid #D1D5DB;
     padding-bottom:0.6rem;
+    font-weight:700;
 }
 
-/* Metric Cards */
+/* METRIC CARDS */
 
 .metric-chip{
-    border:1px solid var(--border-subtle);
+    border:1px solid #D1D5DB;
     background:white;
-    border-radius:10px;
-    padding:0.9rem 1rem;
+    border-radius:12px;
+    padding:1rem;
     text-align:center;
+
+    box-shadow:0 2px 8px rgba(0,0,0,0.04);
 }
 
 .metric-chip .val{
     font-family:'JetBrains Mono', monospace;
-    font-size:1.5rem;
+    font-size:1.6rem;
     font-weight:700;
-    color:var(--text-primary);
+    color:#111827;
 }
 
 .metric-chip .lbl{
-    font-size:0.68rem;
+    font-size:0.7rem;
     letter-spacing:0.09em;
     text-transform:uppercase;
-    color:var(--text-secondary);
+    color:#6B7280;
 }
 
-/* Alerts */
+/* ALERTS */
 
 .alert-card{
-    border-radius:8px;
-    padding:0.7rem;
-    margin-bottom:0.5rem;
+    border-radius:10px;
+    padding:0.8rem;
+    margin-bottom:0.6rem;
+    font-weight:500;
 }
 
 .alert-risk{
     background:#FEE2E2;
     color:#991B1B;
+    border-left:4px solid #DC2626;
 }
 
 .alert-warn{
     background:#FEF3C7;
     color:#92400E;
+    border-left:4px solid #D97706;
 }
 
 .alert-ok{
     background:#DCFCE7;
     color:#166534;
+    border-left:4px solid #16A34A;
 }
 
-/* FIR Card */
+/* FIR CARD */
 
 .doc-card{
-    border:1px solid var(--border-subtle);
+    border:1px solid #D1D5DB;
     background:white;
-    border-radius:10px;
+    border-radius:12px;
     padding:1.4rem;
     font-family:'JetBrains Mono', monospace;
-    color:var(--text-primary);
+    color:#111827;
     white-space:pre-wrap;
 }
 
-/* Tabs */
+/* TABS */
 
 .stTabs [data-baseweb="tab"]{
-    color:var(--text-primary);
+    color:#111827;
     font-weight:600;
 }
 
 .stTabs [aria-selected="true"]{
-    color:var(--accent-cyan) !important;
-    border-bottom:2px solid var(--accent-cyan) !important;
+    color:#2563EB !important;
+    border-bottom:2px solid #2563EB !important;
 }
 
-/* Containers */
+/* CONTAINERS */
 
 div[data-testid="stVerticalBlockBorderWrapper"]{
     background:white !important;
-    border:1px solid var(--border-subtle) !important;
-    border-radius:12px !important;
+    border:1px solid #D1D5DB !important;
+    border-radius:14px !important;
+
+    box-shadow:0 4px 12px rgba(15,23,42,0.05);
 }
 
-/* Inputs */
+/* INPUTS */
 
 .stTextInput input,
 .stTextArea textarea,
 .stNumberInput input,
 div[data-baseweb="select"] > div{
     background:white !important;
-    color:black !important;
+    color:#111827 !important;
     border:1px solid #CBD5E1 !important;
     border-radius:8px !important;
 }
 
-/* Buttons */
+/* BUTTONS */
 
 .stButton > button{
     background:#2563EB;
     color:white;
     border:none;
-    border-radius:8px;
+    border-radius:10px;
     font-weight:600;
+    transition:all .2s ease;
 }
 
 .stButton > button:hover{
     background:#1D4ED8;
     color:white;
+    transform:translateY(-1px);
 }
 
-/* Download Button */
+/* DOWNLOAD BUTTON */
 
 .stDownloadButton > button{
     background:white;
     color:#2563EB;
     border:1px solid #2563EB;
+    border-radius:10px;
+    font-weight:600;
 }
 
-/* Progress */
+/* PROGRESS BAR */
 
 div[data-testid="stProgress"] > div > div{
     background:#2563EB !important;
+    border-radius:10px;
 }
 
-/* Footer */
+/* SIDEBAR */
+
+section[data-testid="stSidebar"]{
+    background:#F8FAFC;
+}
+
+section[data-testid="stSidebar"] *{
+    color:#111827 !important;
+}
+
+/* FOOTER */
 
 .app-footer{
     text-align:center;
     font-family:'JetBrains Mono', monospace;
     font-size:0.75rem;
-    color:var(--text-secondary);
+    color:#6B7280;
     margin-top:2rem;
 }
 
 </style>
 """, unsafe_allow_html=True)
-
 
 # LOGIC — unchanged from the working version
 
