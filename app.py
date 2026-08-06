@@ -239,7 +239,6 @@ Question:
         return f"Error: {e}"
 
   prompt = f"You are a Cyber Security Expert.
-
 Answer the following cybersecurity question in a clear and professional manner.
 "
 
