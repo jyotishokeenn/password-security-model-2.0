@@ -646,7 +646,6 @@ with col2:
         "https://humanfocus.co.uk/wp-content/uploads/password-security-800x800.jpg",
         use_container_width=True
     )
-)
 
 # TABS
 
