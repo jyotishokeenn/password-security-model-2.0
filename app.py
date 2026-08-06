@@ -240,7 +240,7 @@ def cyber_chat(question, api_key):
     except Exception as e:
         return f"Error: {e}"
      
-Answer this question:
+#Answer this question:
 
 {question}
         response = model.generate_content(prompt)
