@@ -566,12 +566,12 @@ def render_gauge(score):
 
             "bgcolor": "white",
 
-            "steps": [
-                {"range": [0, 40], "color": "#FEE2E2"},
-                {"range": [40, 70], "color": "#FEF3C7"},
-                {"range": [70, 100], "color": "#DBEAFE"}
-            ]
-        }
+           "steps": [
+                    {"range": [0, 40], "color": "#FCA5A5"},   # Darker Red
+                    {"range": [40, 70], "color": "#FCD34D"},  # Darker Yellow
+                    {"range": [70, 100], "color": "#60A5FA"}  # Darker Blue
+                ]
+            }
     ))
 
     fig.update_layout(
