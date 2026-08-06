@@ -238,17 +238,6 @@ Question:
     except Exception as e:
         return f"Error: {e}"
 
-  prompt = f"You are a Cyber Security Expert.
-Answer the following cybersecurity question in a clear and professional manner.
-"
-
-    response = model.generate_content(prompt)
-
-    return response.text
-
-except Exception as e:
-    return f"Error: {e}"
-
 # ---------------- FIR ----------------
 
 def generate_fir(name, item, place):
