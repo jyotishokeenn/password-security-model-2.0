@@ -816,15 +816,11 @@ Report ID : {report_id}
 
 Date Generated : {datetime.now().strftime("%d-%m-%Y %H:%M:%S")}
 
-------------------------------------------------------------
-
 COMPLAINANT DETAILS
 
 Name           : {name}
 Mobile Number  : {mobile}
 City           : {city}
-
-------------------------------------------------------------
 
 INCIDENT DETAILS
 
@@ -834,13 +830,9 @@ Place of Loss  : {place}
 Date of Loss   : {date_lost}
 Time of Loss   : {time_lost}
 
-------------------------------------------------------------
-
 DESCRIPTION
 
 {description}
-
-------------------------------------------------------------
 
 DECLARATION
 
@@ -851,8 +843,6 @@ action regarding the lost property.
 
 Signature:
 {name}
-
-------------------------------------------------------------
 
 SYSTEM GENERATED REPORT
 Cyber Crime & Public Safety Assistant
