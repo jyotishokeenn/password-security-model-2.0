@@ -4,7 +4,7 @@ import math
 import google.generativeai as genai
 import plotly.graph_objects as go
 
-# PAGE CONFIG
+#===========PAGE CONFIG===============
 
 st.set_page_config(
     page_title="SecureAccess // Password Intelligence Terminal",
@@ -12,7 +12,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# THEME — "Security Operations Console"
+#==========THEME — "Security Operations Console"===========
 
 st.markdown("""
 <style>
@@ -301,7 +301,7 @@ section[data-testid="stSidebar"] *{
 </style>
 """, unsafe_allow_html=True)
 
-# LOGIC — unchanged from the working version
+#=================LOGIC — unchanged from the working version===================
 
 def password_strength(password):
     score = 0
@@ -510,7 +510,7 @@ Kindly register this complaint and assist in locating the item.
 Signature:
 {name}"""
 
-# UI HELPERS
+#====================UI HELPERS===========================
 
 def alert(text, kind="risk", icon=None):
     icons = {"risk": "✕", "warn": "!", "ok": "✓"}
@@ -586,7 +586,7 @@ def render_gauge(score):
     return fig
 
 
-# SIDEBAR
+#=======================SIDEBAR=============================
 
 with st.sidebar:
     st.markdown(
@@ -611,7 +611,7 @@ with st.sidebar:
     st.divider()
     st.caption("Gemini API keys are used only for this session and are never stored or logged.")
 
-# STATUS BAR + HERO
+#======================STATUS BAR + HERO============================
 
 st.markdown(
     '<div class="status-bar">'
@@ -622,7 +622,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# HERO SECTION
+#======================HERO SECTION===============================
 
 col1, col2 = st.columns([2, 1])
 
@@ -646,7 +646,7 @@ with col2:
         use_container_width=True
     )
 
-# TABS
+#==========================TABS============================
 
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "🔑  Password Analysis",
@@ -656,7 +656,7 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "📄  FIR Generator"
 ])
 
-# PASSWORD ANALYSIS
+#=====================PASSWORD ANALYSIS==========================
 
 with tab1:
     with st.container(border=True):
@@ -711,7 +711,7 @@ with tab1:
             st.warning("Enter a password first.")
 
 
-# POLICY GENERATOR
+#===============================POLICY GENERATOR======================================
 
 with tab2:
     with st.container(border=True):
@@ -735,7 +735,7 @@ with tab2:
             st.download_button("📥 Download Policy", policy, file_name="Password_Policy.txt")
 
 
-# PHISHING DETECTOR
+#=========================PHISHING DETECTOR==================================
 
 with tab3:
     with st.container(border=True):
@@ -751,7 +751,7 @@ with tab3:
             st.markdown('<div class="panel-title">Scan Result</div>', unsafe_allow_html=True)
             alert(result, kind=kind, icon="🔍")
 
-# CYBER EXPERT
+#=========================CYBER EXPERT==============================
 
 with tab4:
     with st.container(border=True):
@@ -766,7 +766,7 @@ with tab4:
             st.markdown('<div class="panel-title">Expert Answer</div>', unsafe_allow_html=True)
             st.write(answer)
 
-# FIR GENERATOR
+#=======================FIR GENERATOR================================
 
 from datetime import datetime
 
@@ -878,7 +878,7 @@ Cyber Crime & Public Safety Assistant
             )
 
 
-# FOOTER
+#============================FOOTER================================
 
 st.markdown(
     '<div class="app-footer">SECUREACCESS TERMINAL · POWERED BY GEMINI AI · '
